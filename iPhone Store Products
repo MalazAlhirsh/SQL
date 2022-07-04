@@ -1,0 +1,31 @@
+/*Create a iphone store with it's inventory database*/
+
+CREATE TABLE IPhone_Store (Id INTEGER PRIMARY KEY AutoIncrement, 
+Company TEXT, Phone_Name TEXT, Number INTEGER, Year INTEGER,
+Rank INTEGER, Size_GB INTEGER, Price_$ INTEGER);
+
+INSERT INTO Iphone_store (Company, Phone_Name, Number, Year, Rank, SIZE_GB, Price_$) 
+VALUES 
+('Apple', 'iphone', null, 2007, 2, 4, 499),
+('Apple', 'iphone_G', 3, 2008, 4, 8, 499),
+('Apple', 'iphone', 4, 2010, 3, 8, 599),
+('Apple', 'iphone', 5, 2012, 1, 16, 649),
+('Apple', 'iphone', 6, 2014,11, 16, 649),
+('Apple', 'iphone_Plus', 6, 2014, 7, 16, 749),
+('Apple', 'iphone_SE', null , 2016, 13, 16, 399),
+('Apple', 'iphone', 7, 2016, 12, 32, 649),
+('Apple', 'iphone_Plus', 7, 2016, 8, 3, 769),
+('Apple', 'iphone', 8, 2017, 9, 64, 699),
+('Apple', 'iphone_Plus', 8, 2017, 10, 64, 799),
+('Apple', 'iphone', 11, 2019, 9, 64, 699),
+('Apple', 'iphone', 12, 2020, 6, 64, 799),
+('Apple', 'iphone', 13, 2021, 5, 128, 799);
+
+/*Display the database*/
+SELECT * FROM IPhone_Store;
+
+/*Display the database order by Rank*/
+SELECT * FROM IPhone_Store ORDER BY Rank;
+
+/*The average cost of iphones in the past 12+ year combined and it is rounded up*/
+SELECT ROUND(AVG(Price_$)) FROM IPhone_Store
