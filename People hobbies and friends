@@ -1,0 +1,64 @@
+/* Creating a table database for People hobbies*/
+
+CREATE TABLE People (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fullname TEXT, age INTEGER);
+    
+INSERT INTO People (fullname, age) VALUES ("Bobby McBobbyFace", "12");
+INSERT INTO People (fullname, age) VALUES ("Lucy BoBucie", "25");
+INSERT INTO People (fullname, age) VALUES ("Banana FoFanna", "14");
+INSERT INTO People (fullname, age) VALUES ("Shish Kabob", "20");
+INSERT INTO People (fullname, age) VALUES ("Fluffy Sparkles", "8");
+INSERT INTO People (fullname, age) VALUES ("Malaz Rooney", "23");
+
+/*Made a seperate table for hobbies*/
+
+CREATE table hobbies (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person_id INTEGER,
+    name TEXT);
+    
+INSERT INTO hobbies (person_id, name) VALUES (1, "drawing");
+INSERT INTO hobbies (person_id, name) VALUES (1, "coding");
+INSERT INTO hobbies (person_id, name) VALUES (2, "dancing");
+INSERT INTO hobbies (person_id, name) VALUES (2, "coding");
+INSERT INTO hobbies (person_id, name) VALUES (3, "skating");
+INSERT INTO hobbies (person_id, name) VALUES (3, "rowing");
+INSERT INTO hobbies (person_id, name) VALUES (3, "drawing");
+INSERT INTO hobbies (person_id, name) VALUES (4, "coding");
+INSERT INTO hobbies (person_id, name) VALUES (4, "dilly-dallying");
+INSERT INTO hobbies (person_id, name) VALUES (4, "meowing");
+INSERT INTO hobbies (person_id, name) VALUES (5, "Reading");
+INSERT INTO hobbies (person_id, name) VALUES (5, "Writting");
+INSERT INTO hobbies (person_id, name) VALUES (5, "PC_Games");
+INSERT INTO hobbies (person_id, name) VALUES (6, "Basketball");
+
+/*Created a 3rd table for matching the friends group*/
+
+CREATE table friends (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    person1_id INTEGER,
+    person2_id INTEGER,
+    person3_id INTEGER);
+
+INSERT INTO friends (person1_id, person2_id, person3_id)
+    VALUES (1, 4, 5);
+INSERT INTO friends (person1_id, person2_id,  person3_id)
+    VALUES (2, 3, 6);
+
+/*Created the JOin of the 2 table to create a table with both full Name and matcging hobbies*/
+
+SELECT People.fullname, hobbies.name FROM People 
+JOIN hobbies
+ON People.id = hobbies.person_id;
+
+/*Created a table with their 3 fried group in each row*/
+
+SELECT a.fullname, b.fullName, c.fullName 
+FROM friends
+JOIN People a 
+ON a.id = friends.person1_id
+JOIN People b
+ON b.id = friends.person2_id
+JOIN People c
+ON c.id = friends.person3_id;
