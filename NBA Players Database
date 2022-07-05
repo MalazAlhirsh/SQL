@@ -1388,3 +1388,9 @@ SELECT Player, Age,
             ELSE 'Error'
     END AS 'NBA_Age_Status'
 FROM players;
+
+/*I want to find players with Full name containing James in it and which team they play for*/
+SELECT Player, Team 
+FROM players 
+WHERE player LIKE '%James%' 
+GROUP BY Player;
