@@ -1,0 +1,53 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# Then I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL. 
+
+
+CREATE TABLE BIT_DB.Spotifydata (
+Id INTEGER PRIMARY KEY,
+Artist_Name Varchar NOT NULL,  
+Track_Nmae Varchar NOT NULL,
+Track_Id Varchar NOT NULL,
+Popularity INTEGER NOT NULL,
+Danceability Decimal (4,3) NOT NULL,
+Energy Decimal (4,3) NOT NULL,
+Key INTEGER NOT NULL,
+Loudness Decimal (5,3) NOT NULL,
+Mode INTEGER NOT NULL,
+Speechiness Decimal (5,5) NOT NULL,
+Acousticness Decimal (6,5)NOT NULL,
+Instrumentalness TEXT NOT NULL,
+liveness Decimal (5,4) NOT NULL,
+Valence Decimal (5,3) NOT NULL,
+Tempo Decimal (6,5) NOT NULL,
+Duration_ms INTEGER NOT NULL,
+Time_signature INTEGER NOT NULL
+);
+
+# See how the Table is formatted
+SELECT *FROM BIT_DB.Spotifydata;
+
+# which song is the most popular and most energy in the list
+SELECT Artist_Name, Max(Popularity),Energy 
+FROM BIT_DB.Spotifydata;
+
+# how many songs this singer has
+SELECT Artist_Name, Track_Nmae, Popularity 
+FROM BIT_DB.Spotifydata 
+WHERE Artist_Name = 'Olivia Rodrigo';
+
+# how many songs each singer has
+SELECT Artist_Name, COUNT(Track_nmae)
+FROM BIT_DB.Spotifydata
+GROUP BY Artist_Name;
+
+# 4minutes =240000 ms, lets see which which songs are longer then that*/
+SELECT Artist_Name, Track_nmae, Duration_ms
+FROM BIT_DB.Spotifydata
+WHERE Duration_ms > 240000;
+
+# Lets find the Avg popularity, Energy, and loudness by Artist, Track*/
+SELECT Artist_Name, Track_Nmae, Avg(popularity),Avg(Energy), Avg(Loudness)
+FROM BIT_DB.Spotifydata
+GROUP BY Artist_Name, Track_Nmae
+ORDER BY Avg(Popularity) DESC;
