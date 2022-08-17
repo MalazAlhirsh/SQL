@@ -1372,9 +1372,14 @@ SELECT * FROM players;
 SELECT  Min(Height) FROM players;
 SELECT  Max(Height) FROM players;
 
-/*Finding more data about the table and the data within it */
+/*Finding more data about the table and the data within it
+The average age in NBA. */
 SELECT Team, ROUND (AVG (Age)) AS Avg_Age FROM players GROUP BY Team Having Avg_Age > 20;
+
+/*player in the league more than 10 years */
 SELECT player FROM players WHERE Seasons_in_league > 10;
+
+/* player age >22 and their position*/
 SELECT player,Position FROM players WHERE Age >22 AND (Position= 'PG' OR position = 'G')
 GROUP BY player; 
 
